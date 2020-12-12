@@ -81,8 +81,8 @@ void Juego::reiniciar() {
 
 Juego::Juego() {
     poner_fichas();
-    ifstream entrada("jugadores.txt", ifstream::app); //append
-    while (!entrada.eof()) { //end of file
+    ifstream entrada("jugadores.txt", ifstream::app);
+    while (!entrada.eof()) {
         string nombre;
         int nivel;
         entrada >> nombre >> nivel;
@@ -106,8 +106,8 @@ Juego::~Juego() {
 }
 
 void Juego::mostrar() {
-    // comprobar si alguien perdio
-    int jg1 = 0, jg2 = 0; // lista = (1, 154, 2)   for x in lista:
+    // comprobar si alguien perdió
+    int jg1 = 0, jg2 = 0;
     for (auto i : tablero) {
         for (auto j : i) {
             if (j > 0)
@@ -140,7 +140,7 @@ void Juego::mostrar() {
             i = 2;
     }
 
-    // Mostramos el tablero
+    // mostramos el tablero
     cout << "  +---+---+---+---+---+---+---+---+\n";
     for (int i = 0; i < 8; ++i) {
         cout << i + 1 << " |";
@@ -169,7 +169,7 @@ void Juego::mostrar() {
     }
     cout << "    A   B   C   D   E   F   G   H\n\n";
 
-    // procesar el comando
+    // procesamos el comando
     string tmp;
     turno = !turno;
     do {
@@ -192,13 +192,13 @@ bool Juego::procesar_comando(string s) {
         poner_fichas();
         return true;
     } else {
-        //comprobamos si existe ->
+        //comprobamos si existe "->"
         if (s.find("->") == string::npos) {
             cout << "Comando invalido\n";
             return false;
         }
 
-        //comprobamos q la 1ra letra sea un num y la 2da mayuscula
+        //comprobamos que la 1ra letra sea un num y la 2da mayúscula
         string p1, p2;
         if (isdigit(s[0]) && isupper(s[1])) {
             p1 += s[0];
@@ -216,19 +216,19 @@ bool Juego::procesar_comando(string s) {
             return false;
         }
         
-        // usando codigos ascii 
+        // usando códigos ascii 
         int x1 = p1[0] - 49;
         int y1 = p1[1] - 65;
         int x2 = p2[0] - 49;
         int y2 = p2[1] - 65;
-        // si todos los num estan en [1, 7]
+        // si todos los num pertenecen a [1, 7]
         if (x1 < 0 or x1 > 7 or y1 < 0 or y1 > 7 or x2 < 0 or x2 > 7 or y2 < 0 or y2 > 7 or p1 == p2) {
             cout << "Comando invalido\n";
             return false;
         }
         
-        // si la posicion de la ficha esta vacia
-        // o la posicion a moverse esta ocupada
+        // si la posición de la ficha esta vacía
+        // o la posición a moverse esta ocupada
         if (tablero[x1][y1] == 0 or tablero[x2][y2] != 0) {
             cout << "Comando invalido\n";
             return false;

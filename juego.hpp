@@ -1,10 +1,10 @@
 #pragma once
 #include <array>
 #include <string>
-#include <fstream> // archivos
+#include <fstream>
 #include <iostream>
-#include <cctype> // trabajo en caracteres
-#include <unordered_map> // diccionario
+#include <cctype>
+#include <unordered_map>
 using namespace std;
 
 /*
@@ -17,10 +17,10 @@ using namespace std;
 
 class Juego {
 private:
-    array<array<int, 8>, 8> tablero; //int tablero[8][8]
+    array<array<int, 8>, 8> tablero;
     bool turno = true;
     string j1, j2;
-    unordered_map<string, int> archivo; // diccionario = {Jose: 0}
+    unordered_map<string, int> archivo;
     bool procesar_comando(string s);
     void poner_fichas();
     void reiniciar();
